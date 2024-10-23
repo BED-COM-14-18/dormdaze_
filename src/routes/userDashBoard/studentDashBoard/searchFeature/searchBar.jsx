@@ -2,15 +2,15 @@
 // import { apartments } from './templateListing';
 
 
-// export const SearchBar = ({ onSearch }) => {
-//     // Accept onSearch prop to send search results
-//   const [filter, setFilter] = useState({
-//     address: '',
-//     minPrice: '',
-//     maxPrice: '',
-//     room: '',
-//     amenities: '',
-//   });
+export const SearchBar = ({ onSearch }) => {
+    // Accept onSearch prop to send search results
+  const [filter, setFilter] = useState({
+    address: '',
+    minPrice: '',
+    maxPrice: '',
+    room: '',
+    amenities: '',
+  });
 
 //   useEffect(() => {
 //     const { address, minPrice, maxPrice, room, amenities } = filter;
