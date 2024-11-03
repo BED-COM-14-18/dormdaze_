@@ -1,34 +1,38 @@
-// import React, { useState } from 'react';
-// import TopBar from './TopBar'; // Adjust the import path as needed
-// import Auth from '../studentAuth/Auth';
-// import LoginPage from '../../hostelOwnerDashoard/hostelOwnerAuth/LoginPage';
-// import ChoiceModal from './choiceModal.jsx';
 
-// export default function UserProfileDesktopHomePage() {
-//   const [selectedProfile, setSelectedProfile] = useState(null);
-//   const [isModalOpen, setIsModalOpen] = useState(true);
+import { useState } from "react";
+import {FcGoogle} from "react-icons/fc";
+import { Fakey } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
 
-//   const handleSelect = (profile) => {
-//     setSelectedProfile(profile);
-//     setIsModalOpen(false);
-//   };
 
-//   return (
-//     <div className="flex flex-col h-screen w-full">
-//       <TopBar />
-//       <ChoiceModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSelect={handleSelect} />
-//       <div className="flex flex-col w-full mt-[9vh]">
-//         {selectedProfile === 'student' && (
-//           <div className="w-full p-4">
-//             <Auth />
-//           </div>
-//         )}
-//         {selectedProfile === 'hostelOwner' && (
-//           <div className="w-full p-4">
-//             <LoginPage />
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
+export default function Sign_in(){
+  const [email, setEmail] = useState(" ");
+  const [password, setPassword] = useState(" ");
+  const [errors, setErrors] = useState({});
+
+
+  const validate = () => {
+    const errors = {};
+    if(!email) errors.email = "Email is required";
+if(!password) errors.password = "Password is required";
+
+  };
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0){
+      setErrors(validationErrors);
+    }
+    else{
+      //here the succeddiful sign_in is handled
+      console.sign({ email, password});
+
+      //reset the form
+      setEmail(" ");
+      setPassword (" ");
+      setErrors({ });
+    }
+};
+
+
+}
