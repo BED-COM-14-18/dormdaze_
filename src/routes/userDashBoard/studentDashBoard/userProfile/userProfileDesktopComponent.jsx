@@ -1,34 +1,79 @@
-// import React, { useState } from 'react';
-// import TopBar from './TopBar'; // Adjust the import path as needed
-// import Auth from '../studentAuth/Auth';
-// import LoginPage from '../../hostelOwnerDashoard/hostelOwnerAuth/LoginPage';
-// import ChoiceModal from './choiceModal.jsx';
 
-// export default function UserProfileDesktopHomePage() {
-//   const [selectedProfile, setSelectedProfile] = useState(null);
-//   const [isModalOpen, setIsModalOpen] = useState(true);
+import { useState } from "react";
+import {FcGoogle} from "react-icons/fc";
+import { Fakey } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
 
-//   const handleSelect = (profile) => {
-//     setSelectedProfile(profile);
-//     setIsModalOpen(false);
-//   };
 
-//   return (
-//     <div className="flex flex-col h-screen w-full">
-//       <TopBar />
-//       <ChoiceModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSelect={handleSelect} />
-//       <div className="flex flex-col w-full mt-[9vh]">
-//         {selectedProfile === 'student' && (
-//           <div className="w-full p-4">
-//             <Auth />
-//           </div>
-//         )}
-//         {selectedProfile === 'hostelOwner' && (
-//           <div className="w-full p-4">
-//             <LoginPage />
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
+export default function Sign_in(){
+  const [email, setEmail] = useState(" ");
+  const [password, setPassword] = useState(" ");
+  const [errors, setErrors] = useState({});
+
+
+  const validate = () => {
+    const errors = {};
+    if(!email) errors.email = "Email is required";
+if(!password) errors.password = "Password is required";
+
+  };
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0){
+      setErrors(validationErrors);
+    }
+    else{
+      //here the succeddiful sign_in is handled
+      console.sign({ email, password});
+
+      //reset the form
+      setEmail(" ");
+      setPassword (" ");
+      setErrors({ });
+    }
+};
+return(
+  <div className="flex justify-center items-center bg-cyan-950 h-full">
+    <div className="bg-cyan-900 rounded-md px-1 py-8 mt-20 mb-6 w-3/5 justify-center items-center">
+    <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center">
+      <div className="mb-5">
+        <h1 className="font-bold text-3x1 sm:text-4x1 text-black">sign-in</h1>
+
+      </div>
+        <div className="space-x-4 mt-8">
+          <CgProfile className="inline-block"/>
+          <label className="text-black font-sembold" htmlFor="email">
+            Email
+          </label>
+          <input
+          className="py-1 px-1 w-60 rounded-md outline-none bg-slate-200"
+          type="text"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="limchip@gmail.com"
+          />
+        </div>
+        {errors.email && <p className="text-red-500">{errors.email}</p>}
+        <div className = "space-x4- mt-8">
+          <Fakey className = "inline-block"/>
+          <label className = "text-black font-sembold" htmlFor = "password">
+            Password
+          </label>
+          <input
+          className = "py-1 px-1 w-60 rounded-md otline-none bg-slate-200"
+          type = "password"
+          id = "password"
+          value = {password}
+          onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+    </form>
+    </div>
+  </div>
+
+);
+
+
+}
