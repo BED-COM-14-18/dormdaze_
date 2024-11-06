@@ -61,14 +61,19 @@ return(
           <label className = "text-black font-sembold" htmlFor = "password">
             Password
           </label>
-          <input
-          className = "py-1 px-1 w-60 rounded-md otline-none bg-slate-200"
-          type = "password"
-          id = "password"
-          value = {password}
-          onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+          
+          
+      
+          </div>
+          <div>
+            <button
+            className="flex flex-row items-center bg-cyan-600 rounded-md mt-10 py-2 px-10 hover:scale-90 duration-200 ease-in-out"
+            type ="submit"
+            >
+              <p className="font-sembold text-lime-300">SignIn</p>
+            </button>
+          </div>
+
     </form>
     </div>
   </div>
