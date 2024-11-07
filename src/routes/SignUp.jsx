@@ -33,8 +33,8 @@ function SignUp () {
     <div className="container">
       <div className="overlay"></div>
         <div className="form-Container">
-         <h1>Welcome</h1>
-         <p>Sign Up</p>
+         <h1><b>Dormdaze</b></h1>
+         
 
         {/* Sign-Up form */} 
         <form onSubmit={handleSubmit} className='sign-up form'>
@@ -80,12 +80,12 @@ function SignUp () {
             required
             />
 
-          <button className='Submit'>Submit</button> 
+          <button className='create an account'>Create account</button> 
            
         </form>
 
       <div className='login-link'>
-        <p>Already have an Account? <a href="#">Log in here</a></p>
+        <p>Already have an Account? <a href="#">Log In</a></p>
         </div>
         </div>
         </div>  
@@ -94,4 +94,3 @@ function SignUp () {
 }
 
 export default SignUp
-
