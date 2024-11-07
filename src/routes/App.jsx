@@ -1,11 +1,13 @@
-// app.js or app.jsx
+// src/routes/App.jsx
 import React from 'react';
-import Login from './Login'; // Adjust the path as necessary
+import SignUp from './SignUp'; 
+// Adjust the path if necessary
+//import './SignUp.css'; // Adjust the path to your CSS file
 
 function App() {
   return (
-    <div className="h-screen">
-      <Login />
+    <div className="h-screen flex items-center justify-center">
+      <SignUp />
     </div>
   );
 }
