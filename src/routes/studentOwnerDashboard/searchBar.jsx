@@ -66,7 +66,7 @@ export const SearchBar = ({ onSearch }) => {
             placeholder="Type here to search..."
             value={filter.address}
             onChange={handleChange}
-            className='text-slate-600 border-x-stone-500 rounded-l-md h-[5vh] md:h-[7vh] lg:h-[7vh] w-[45vw] pl-3 text-lg'
+            className='text-slate-600 border-x-stone-500 rounded-l-md h-[5vh] md:h-[7vh] focus:outline-none lg:h-[7vh] w-[45vw] pl-3 text-lg'
           />
           <button type="submit" className='h-[5vh] lg:h-[7vh] w-12 bg-slate-600 hover:bg-[#00e0c7] focus:drop-shadow-md rounded-r-md pl-4'>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className='bi bi-search fill-white' viewBox="0 0 18 18">
