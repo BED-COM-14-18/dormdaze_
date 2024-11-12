@@ -1,10 +1,6 @@
 import React from 'react';
-import './index.css';
-import MobileHomePage from './routes/userDashboard/studentDashBoard/mobileComponent';
-import DesktopHomePage from './routes/userDashboard/studentDashBoard/desktopComponent';
-
-//import paymentFeature from './routes/userDashboard/payment/paymentFeature';
-//import LoginPage from './routes/userDashboard/hostelOwnerDashoard/hostelOwnerAuth/LoginPage';
+import NotificationMobileHomePage from './notificationMobileComonent';
+import NotificationDesktopHomePage from './notificationDesktopComponent';
 
 const viewportContext = React.createContext({});
 
@@ -36,21 +32,18 @@ const useViewport = () => {
 /*const MobileComponent = () => <p>"Hmmm... Why is your screen so small?"</p>;
 const DesktopComponent = () => <p>"Wow, your screen is big!"</p>;*/
 
-// eslint-disable-next-line no-unused-vars
-
-
 const MyComponent = () => {
   const { width } = useViewport();
   const breakpoint = 600;
 
-  return width < breakpoint ? <MobileHomePage /> : <DesktopHomePage />;
+  return width < breakpoint ? <NotificationMobileHomePage /> : <NotificationDesktopHomePage />;
 };
 
-
-export default function UserProfile() {
+export default function Notification() {
   return (
-<ViewportProvider>
-  <MyComponent />
-</ViewportProvider>
+    <ViewportProvider>
+      <MyComponent />
+    </ViewportProvider>
   );
 }
+
