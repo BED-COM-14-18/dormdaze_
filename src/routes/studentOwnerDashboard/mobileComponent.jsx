@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import React, { useState } from 'react';
 import { MenuBt } from "./desktopComponent";
-import SearchBar from ".searchFeature/searchBar";
-import FilterDropdown from '.filterFeature/FilterButton';
+import SearchBar from "./searchBar";
+import FilterDropdown from './FilterButton';
 import { useEffect } from "react";
 import Example, { apartments } from "./templateListing";
 

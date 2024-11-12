@@ -30,12 +30,12 @@ const About = () => {
     <div>
       <TopBar />
       <div className="p-6 py-20 md:p-8 lg:p-12 max-w-5xl mx-auto">
-      <h1 className="text-3xl font-bold mb-4">Welcome to Dormdash!</h1>
+      <h1 className="text-3xl font-bold mb-4">Welcome to Dormdaze!</h1>
        
       <section className="mb-8 shadow-sm border p-3 rounded-md bg-slate-50">
         <h2 className="text-2xl font-semibold mb-2">Revolutionizing Off-Campus Hostel Booking for University Students</h2>
         <p>
-          Dormdash is a dedicated platform designed to streamline the process of finding and booking off-campus hostels for university students. Our mission is to provide a secure, efficient, and user-friendly experience, making it easier for students to find the perfect accommodation near their university.
+          Dormdaze is a dedicated platform designed to streamline the process of finding and booking off-campus hostels for university students. Our mission is to provide a secure, efficient, and user-friendly experience, making it easier for students to find the perfect accommodation near their university.
         </p>
       </section>
       
@@ -106,10 +106,10 @@ const About = () => {
       <section className="mb-8 shadow-sm border p-3 rounded-md mt-4 bg-slate-50">
         <h2 className="text-2xl font-semibold mb-2">Get Started Today!</h2>
         <p>
-          Join Dormdash and discover the easiest way to find and book off-campus hostels. Whether you're a student looking for the perfect place to stay or a hostel owner aiming to reach more students, our platform has you covered.
+          Join Dormdaze and discover the easiest way to find and book off-campus hostels. Whether you're a student looking for the perfect place to stay or a hostel owner aiming to reach more students, our platform has you covered.
         </p>
         <p>
-          Sign up now and revolutionize your off-campus living experience with Dormdash!
+          Sign up now and revolutionize your off-campus living experience with Dormdaze!
         </p>
       </section>
       

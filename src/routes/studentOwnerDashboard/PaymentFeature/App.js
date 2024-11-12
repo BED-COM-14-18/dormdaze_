@@ -1,7 +1,6 @@
 import React from 'react';
+import PayFeature from './paymentFeature';
 
-import CreateListingMobile from './createListingMobile';
-import CreateListingDesktop from './createListingDesktop';
 const viewportContext = React.createContext({});
 
 const ViewportProvider = ({ children }) => {
@@ -29,20 +28,21 @@ const useViewport = () => {
   return { width, height };
 };
 
-
+/*const MobileComponent = () => <p>"Hmmm... Why is your screen so small?"</p>;
+const DesktopComponent = () => <p>"Wow, your screen is big!"</p>;*/
 
 const MyComponent = () => {
   const { width } = useViewport();
   const breakpoint = 600;
 
-  return width < breakpoint ? <CreateListingMobile /> : <CreateListingDesktop />;
+  return width < breakpoint ? <PaymentFeature /> : <PaymentFeature />;
 };
 
 
-export default function CreateListing() {
+export default function PaymentFeature() {
   return (
  <ViewportProvider>
-    <MyComponent />
+    <PayFeature />
  </ViewportProvider>
   );
 }

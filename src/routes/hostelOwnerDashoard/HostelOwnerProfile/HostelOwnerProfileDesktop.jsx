@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 //             <div className='bg-[#e33d2800] mt-1'>
 //               <button 
 //                   type="button"
-//                  onClick={handleGoBack}
+//                   onClick={handleGoBack}
 //                   className='h-6 w-6 bg-cover bg-no-repeat ml-6'
 //               >
 //                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16" className=' size-8 fill-black'>
