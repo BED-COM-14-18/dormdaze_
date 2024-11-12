@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
-import MobileHomePage from './routes/userDashboard/studentDashBoard/mobileComponent';
-import DesktopHomePage from './routes/userDashboard/studentDashBoard/desktopComponent';
+import MobileHomePage from './routes/studentDashBoard/mobileComponent';
+import DesktopHomePage from './routes/userDashBoard//desktopComponent';
 
 //import paymentFeature from './routes/userDashboard/payment/paymentFeature';
 //import LoginPage from './routes/userDashboard/hostelOwnerDashoard/hostelOwnerAuth/LoginPage';
