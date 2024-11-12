@@ -63,7 +63,7 @@ export const SearchBar = ({ onSearch }) => {
           <input
             type="text"
             name="address"
-            placeholder="Where to go?..."
+            placeholder="Type here to search..."
             value={filter.address}
             onChange={handleChange}
             className='text-slate-600 border-x-stone-500 rounded-l-md h-[5vh] md:h-[7vh] lg:h-[7vh] w-[45vw] pl-3 text-lg'
