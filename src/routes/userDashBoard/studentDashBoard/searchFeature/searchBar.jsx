@@ -32,9 +32,9 @@ export const SearchBar = ({ onSearch }) => {
 
     const { address, minPrice, maxPrice, room, amenities } = filter;
 
-    // Check if all filter fields are empty
+    // Check if all filter fields are empty.
     if (!address && !minPrice && !maxPrice && !room && !amenities) {
-      onSearch(null); // No input, return empty results
+      onSearch(null); // No input, return empty results.
       return;
     }
 
