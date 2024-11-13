@@ -16,7 +16,7 @@ import HostelOwnerDashboard from './routes/hostelOwnerDashoard/App';
 import App from './App';
 import ErrorPage from './error-page';
 import reportWebVitals from './reportWebVitals';
-import AdminDashboard from './routes/admindashboard/admin';
+import AdminDashboard from './routes/adminDashBoard/admin';
 import PayFeature from './routes/studentOwnerDashboard/PaymentFeature/App';
 import LoginPage from './routes/hostelOwnerDashoard/hostelOwnerAuth/LoginPage';
 import CreateListing from './routes/hostelOwnerDashoard/createListings/App';
