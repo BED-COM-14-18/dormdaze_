@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './SignUp.css'; // Adjusted to match import naming conventions
 
 const validateSignIn = (values) => {
   const errors = {};
@@ -42,10 +41,12 @@ function SignIn() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-4 text-center">Sign In</h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">Sign In</h1>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Email Field */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
               Email:
@@ -56,12 +57,13 @@ function SignIn() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
               required
             />
-            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+            {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
           </div>
 
+          {/* Password Field */}
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
               Password:
@@ -72,12 +74,13 @@ function SignIn() {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
               required
             />
-            {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
+            {errors.password && <p className="text-sm text-red-500 mt-1">{errors.password}</p>}
           </div>
 
+          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
@@ -85,8 +88,10 @@ function SignIn() {
             Sign In
           </button>
         </form>
-        <div className="text-center mt-4">
-          <p>
+
+        {/* Sign Up Link */}
+        <div className="text-center mt-6">
+          <p className="text-sm text-gray-600">
             Don't have an account?{' '}
             <a href="#" className="text-blue-500 hover:underline">
               Sign up here
