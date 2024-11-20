@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from 'react';
 import { MenuBt } from "./desktopComponent";
 import SearchBar from "./searchBar";
-import FilterDropdown from './FilterButton';
+import FilterDropdown from './FilterApartments';
 import { useEffect } from "react";
 import Example, { apartments } from "./templateListing";
 

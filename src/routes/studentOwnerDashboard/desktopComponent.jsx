@@ -7,7 +7,7 @@ import { Button } from 'primereact/button';
 //import { Dropdown } from 'primereact/dropdown';
 import React, { useState } from 'react';
 import SearchBar from "./searchBar";
-import FilterDropdown from './FilterButton';
+import FilterDropdown from './FilterApartments';
 import { useEffect } from "react";
 
 
@@ -35,9 +35,9 @@ function TopBar({onSearch, onFilter}) {
           </Link>
           
           <SearchBar onSearch={onSearch} />
-
+        
           <div className='flex flex-col  text-xs justify-around items-center bg-[#fffdf9] size-9 rounded-xl bg-center'>
-            <button 
+          <Link to={'/FilterApartments'}><button 
               type="button" 
               className='h-5 w-5 bg-cover bg-no-repeat border-solid border-black'
               onClick={toggleFilterDropdown}
@@ -45,10 +45,10 @@ function TopBar({onSearch, onFilter}) {
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16" className='size-5 fill-black'>
                   <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z"/>
                 </svg>
-            </button>
-          {isFilterVisible && <FilterDropdown onFilter={onFilter} />}
+            </button></Link>
+         {isFilterVisible && <FilterDropdown onFilter={onFilter} />}
           {/*<p>Filter</p>*/}
-          </div>
+          </div> 
         
           <Link to={'/notification'}>
             <div className='flex flex-col   text-xs items-center justify-center'>
@@ -61,16 +61,16 @@ function TopBar({onSearch, onFilter}) {
             </div>
           </Link>
           
-          <Link to={'/userProfile'}>
-            <div className="flex flex-col   text-xs items-center justify-center">
+          
+          < Link to={'/studentAuth'}><div className="flex flex-col   text-xs items-center justify-center">
               <button type="button" className='h-6 w-6 bg-cover bg-no-repeat'>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16" className='size-6'>
                   <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
                 </svg>
               </button>
               <p>User</p>
-            </div>
-          </Link>
+            </div></Link>
+          
     </div>
   );
 }
