@@ -1,22 +1,10 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import './Sign.css'; // Adjusted to match import naming conventions
 
-// Dummy data to simulate registered users
-const dummyUsers = [
-  {
-    email: 'user@example.com',
-    password: 'password123',
-  },
-];
-
-const validateSignup = (values) => {
+const validateSignUp = (values) => {
   const errors = {};
-  if (!values.firstName) {
-    errors.firstName = 'First name is required!';
-  }
-  if (!values.lastName) {
-    errors.lastName = 'Last name is required!';
+  if (!values.name) {
+    errors.name = 'Name is required!';
   }
   if (!values.email) {
     errors.email = 'Email is required!';
@@ -26,292 +14,110 @@ const validateSignup = (values) => {
   if (!values.password) {
     errors.password = 'Password is required!';
   } else if (values.password.length < 6) {
-    errors.password = 'Password must be at least 6 characters';
+    errors.password = 'Password must be at least 6 characters!';
   }
   if (!values.confirmPassword) {
     errors.confirmPassword = 'Confirm password is required!';
-  } else if (values.confirmPassword !== values.password) {
+  } else if (values.password !== values.confirmPassword) {
     errors.confirmPassword = 'Passwords must match!';
   }
   return errors;
 };
 
-const Auth = () => {
-  const [isLogin, setIsLogin] = useState(true);
-  const [signupValues, setSignupValues] = useState({
-    firstName: '',
-    lastName: '',
+function SignUp() {
+  const [formData, setFormData] = useState({
+    name: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
-  const [loginValues, setLoginValues] = useState({ email: '', password: '' });
+
   const [errors, setErrors] = useState({});
-  const [loggedIn, setLoggedIn] = useState(false);
 
-  const handleSignupChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setSignupValues({ ...signupValues, [name]: value });
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
-  const handleLoginChange = (e) => {
-    const { name, value } = e.target;
-    setLoginValues({ ...loginValues, [name]: value });
-  };
-
-  const handleSignupSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validateSignup(signupValues);
-    if (Object.keys(validationErrors).length === 0) {
-      dummyUsers.push({
-        email: signupValues.email,
-        password: signupValues.password,
-      });
-      setLoggedIn(true); // Automatically log the user in after successful signup
-    } else {
+    const validationErrors = validateSignUp(formData);
+    if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      return;
     }
+    console.log('Form Data submitted: ', formData);
+    alert('Account created successfully!');
   };
-
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    const user = dummyUsers.find(
-      (user) =>
-        user.email === loginValues.email &&
-        user.password === loginValues.password
-    );
-    if (user) {
-      setLoggedIn(true);
-    } else {
-      setErrors({ login: 'Invalid email or password' });
-    }
-  };
-
-  const handleLogout = () => {
-    setLoggedIn(false);
-  };
-
-  const handleModeSwitch = () => {
-    setErrors({});
-    setIsLogin(!isLogin);
-  };
-
-  if (loggedIn) {
-    return (
-      <div className="h-screen flex flex-col items-center justify-center bg-gray-100">
-        <button
-          onClick={handleLogout}
-          className="absolute top-4 right-4 bg-red-500 text-white p-2 rounded-full"
-        >
-          Logout
-        </button>
-      </div>
-    );
-  }
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-gray-100">
-      {isLogin ? (
-        <form
-          className="bg-white shadow-lg rounded-lg p-8 w-[50%] lg:w-[30%]"
-          onSubmit={handleLoginSubmit}
-        >
-          <h1 className="text-2xl font-bold mb-6 text-center text-black-700">
-            Log In
-          </h1>
+    <div className="container">
+      <div className="overlay"></div>
+      <div className="form-container">
+        <h1>Welcome</h1>
+        <p>Sign Up</p>
 
-          <div className="mb-4">
-            <label className="block text-black-700 mb-2" htmlFor="loginEmail">
-              Email
-            </label>
-            <div className="flex items-center border-2 rounded-full mb-4 p-2">
-              <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
-              <input
-                className="flex-grow p-2 outline-none"
-                type="email"
-                name="email"
-                id="loginEmail"
-                placeholder="Email"
-                value={loginValues.email}
-                onChange={handleLoginChange}
-              />
-            </div>
-          </div>
+        <form onSubmit={handleSubmit} className="sign-up-form">
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+          {errors.name && <p className="error-text">{errors.name}</p>}
 
-          <div className="mb-4">
-            <label className="block text-black-700 mb-2" htmlFor="loginPassword">
-              Password
-            </label>
-            <div className="flex items-center border-2 rounded-full mb-4 p-2">
-              <FontAwesomeIcon icon={faLock} className="mr-2" />
-              <input
-                className="flex-grow p-2 outline-none"
-                type="password"
-                name="password"
-                id="loginPassword"
-                placeholder="Password"
-                value={loginValues.password}
-                onChange={handleLoginChange}
-              />
-            </div>
-          </div>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          {errors.email && <p className="error-text">{errors.email}</p>}
 
-          {errors.login && (
-            <div className="text-red-500 text-sm mb-4">{errors.login}</div>
+          <label htmlFor="password">Create Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+          {errors.password && <p className="error-text">{errors.password}</p>}
+
+          <label htmlFor="confirmPassword">Confirm Password:</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            required
+          />
+          {errors.confirmPassword && (
+            <p className="error-text">{errors.confirmPassword}</p>
           )}
 
-          <button
-            className="bg-blue-500 text-white rounded-full p-2 w-full hover:bg-blue-600"
-            type="submit"
-          >
-            Log In
-          </button>
-
-          <div className="mt-4 text-center">
-            <span>Don't have an account? </span>
-            <button
-              type="button"
-              className="text-blue-500 hover:underline"
-              onClick={handleModeSwitch}
-            >
-              Sign Up
-            </button>
-          </div>
+          <button className="submit-btn">Submit</button>
         </form>
-      ) : (
-        <form
-          className="bg-white shadow-lg rounded-lg p-8 w-[50%] lg:w-[30%]"
-          onSubmit={handleSignupSubmit}
-        >
-          <h1 className="text-2xl font-bold mb-6 text-center text-black-700">
-            Sign Up
-          </h1>
-          <div className="mb-4">
-            <label className="block text-black-700 mb-2" htmlFor="firstName">
-              First Name
-            </label>
-            <div className="flex items-center border-2 rounded-full mb-4 p-2">
-              <FontAwesomeIcon icon={faUser} className="mr-2" />
-              <input
-                className="flex-grow p-2 outline-none"
-                type="text"
-                name="firstName"
-                id="firstName"
-                placeholder="First Name"
-                value={signupValues.firstName}
-                onChange={handleSignupChange}
-              />
-            </div>
-            {errors.firstName && (
-              <div className="text-red-500 text-sm mb-4">{errors.firstName}</div>
-            )}
-          </div>
 
-          <div className="mb-4">
-            <label className="block text-black-700 mb-2" htmlFor="lastName">
-              Last Name
-            </label>
-            <div className="flex items-center border-2 rounded-full mb-4 p-2">
-              <FontAwesomeIcon icon={faUser} className="mr-2" />
-              <input
-                className="flex-grow p-2 outline-none"
-                type="text"
-                name="lastName"
-                id="lastName"
-                placeholder="Last Name"
-                value={signupValues.lastName}
-                onChange={handleSignupChange}
-              />
-            </div>
-            {errors.lastName && (
-              <div className="text-red-500 text-sm mb-4">{errors.lastName}</div>
-            )}
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-black-700 mb-2" htmlFor="email">
-              Email
-            </label>
-            <div className="flex items-center border-2 rounded-full mb-4 p-2">
-              <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
-              <input
-                className="flex-grow p-2 outline-none"
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Email"
-                value={signupValues.email}
-                onChange={handleSignupChange}
-              />
-            </div>
-            {errors.email && (
-              <div className="text-red-500 text-sm mb-4">{errors.email}</div>
-            )}
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-black-700 mb-2" htmlFor="password">
-              Password
-            </label>
-            <div className="flex items-center border-2 rounded-full mb-4 p-2">
-              <FontAwesomeIcon icon={faLock} className="mr-2" />
-              <input
-                className="flex-grow p-2 outline-none"
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Password"
-                value={signupValues.password}
-                onChange={handleSignupChange}
-              />
-            </div>
-            {errors.password && (
-              <div className="text-red-500 text-sm mb-4">{errors.password}</div>
-            )}
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-black-700 mb-2" htmlFor="confirmPassword">
-              Confirm Password
-            </label>
-            <div className="flex items-center border-2 rounded-full mb-4 p-2">
-              <FontAwesomeIcon icon={faLock} className="mr-2" />
-              <input
-                className="flex-grow p-2 outline-none"
-                type="password"
-                name="confirmPassword"
-                id="confirmPassword"
-                placeholder="Confirm Password"
-                value={signupValues.confirmPassword}
-                onChange={handleSignupChange}
-              />
-            </div>
-            {errors.confirmPassword && (
-              <div className="text-red-500 text-sm mb-4">{errors.confirmPassword}</div>
-            )}
-          </div>
-
-          <button
-            className="bg-blue-500 text-white rounded-full p-2 w-full hover:bg-blue-600"
-            type="submit"
-          >
-            Sign Up
-          </button>
-
-          <div className="mt-4 text-center">
-            <span>Already have an account? </span>
-            <button
-              type="button"
-              className="text-blue-500 hover:underline"
-              onClick={handleModeSwitch}
-            >
-              Log In
-            </button>
-          </div>
-        </form>
-      )}
+        <div className="login-link">
+          <p>
+            Already have an account? <a href="#">Log in here</a>
+          </p>
+        </div>
+      </div>
     </div>
   );
-};
+}
 
-export default Auth;
+export default SignUp;
