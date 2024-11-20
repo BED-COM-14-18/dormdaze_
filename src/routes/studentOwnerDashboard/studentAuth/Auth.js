@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Sign.css'; // Adjusted to match import naming conventions
+import './SignUp.css'; // Adjusted to match import naming conventions
 
 const validateSignUp = (values) => {
   const errors = {};
