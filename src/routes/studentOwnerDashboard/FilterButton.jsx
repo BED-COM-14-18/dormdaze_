@@ -85,7 +85,95 @@
 
 
 
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
+
+// const FilterApartments = ({ apartments, onFilterChange }) => {
+//   const [priceRange, setPriceRange] = useState('all');
+//   const [roomSizeRange, setRoomSizeRange] = useState('all');
+
+//   const priceRanges = [
+//     { label: 'All', value: 'all' },
+//     { label: 'Under $500', value: 'under-500' },
+//     { label: '$500-$1000', value: '500-1000' },
+//     { label: '$1000-$2000', value: '1000-2000' },
+//     { label: 'Over $2000', value: 'over-2000' },
+//   ];
+
+//   const roomSizeRanges = [
+//     { label: 'All', value: 'all' },
+//     { label: 'Studio', value: 'studio' },
+//     { label: '1-2 bedrooms', value: '1-2' },
+//     { label: '3-4 bedrooms', value: '3-4' },
+//     { label: '5+ bedrooms', value: '5+' },
+//   ];
+
+//   const handlePriceChange = (e) => {
+//     setPriceRange(e.target.value);
+//   };
+
+//   const handleRoomSizeChange = (e) => {
+//     setRoomSizeRange(e.target.value);
+//   };
+
+//   useEffect(() => {
+//     if (onFilterChange) {
+//       onFilterChange(filteredApartments);
+//     }
+//   }, [priceRange, roomSizeRange, apartments]);
+
+//   const filteredApartments = apartments.filter((apartment) => {
+//     const priceMatch = (priceRange === 'all' || (
+//       priceRange === 'under-500' && apartment.price < 500) ||
+//       (priceRange === '500-1000' && apartment.price >= 500 && apartment.price < 1000) ||
+//       (priceRange === '1000-2000' && apartment.price >= 1000 && apartment.price < 2000) ||
+//       (priceRange === 'over-2000' && apartment.price >= 2000)
+//     );
+
+//     const roomSizeMatch = (roomSizeRange === 'all' || (
+//       roomSizeRange === 'studio' && apartment.room === 'studio') ||
+//       (roomSizeRange === '1-2' && (apartment.room === '1' || apartment.room === '2')) ||
+//       (roomSizeRange === '3-4' && (apartment.room === '3' || apartment.room === '4')) ||
+//       (roomSizeRange === '5+' && apartment.room >= 5)
+//     );
+
+//     return priceMatch && roomSizeMatch;
+//   });
+
+//   return (
+//     <div>
+//       <label>Price:</label>
+//       <select value={priceRange} onChange={handlePriceChange}>
+//         {priceRanges.map((range) => (
+//           <option key={range.value} value={range.value}>
+//             {range.label}
+//           </option>
+//         ))}
+//       </select>
+
+//       <label>Room Size:</label>
+//       <select value={roomSizeRange} onChange={handleRoomSizeChange}>
+//         {roomSizeRanges.map((range) => (
+//           <option key={range.value} value={range.value}>
+//             {range.label}
+//           </option>
+//         ))}
+//       </select>
+
+//       {filteredApartments.map((apartment) => (
+//         <div key={apartment.id}>
+//           <h2>{apartment.tagname}</h2>
+//           <p>Price: {apartment.price}</p>
+//           <p>Room Size: {apartment.room}</p>
+//         </div>
+//       ))}
+//     </div>
+//   );
+// };
+
+// export default FilterApartments;
+
+
+import React, { useState, useEffect,} from 'react';
 
 const FilterApartments = ({ apartments, onFilterChange }) => {
   const [priceRange, setPriceRange] = useState('all');
@@ -107,37 +195,41 @@ const FilterApartments = ({ apartments, onFilterChange }) => {
     { label: '5+ bedrooms', value: '5+' },
   ];
 
-  const handlePriceChange = (e) => {
-    setPriceRange(e.target.value);
-  };
+  const handlePriceChange = (e) => setPriceRange(e.target.value);
 
-  const handleRoomSizeChange = (e) => {
-    setRoomSizeRange(e.target.value);
-  };
+  const handleRoomSizeChange = (e) => setRoomSizeRange(e.target.value);
+
+  const filteredApartments = useState(() => {
+    return apartments.filter((apartment) => {
+      const matchesPrice = (() => {
+        if (priceRange === 'all') return true;
+        const price = apartment.price;
+        if (priceRange === 'under-500') return price < 500;
+        if (priceRange === '500-1000') return price >= 500 && price < 1000;
+        if (priceRange === '1000-2000') return price >= 1000 && price < 2000;
+        if (priceRange === 'over-2000') return price >= 2000;
+        return false;
+      })();
+
+      const matchesRoomSize = (() => {
+        if (roomSizeRange === 'all') return true;
+        const room = apartment.room.toString();
+        if (roomSizeRange === 'studio') return room === 'studio';
+        if (roomSizeRange === '1-2') return ['1', '2'].includes(room);
+        if (roomSizeRange === '3-4') return ['3', '4'].includes(room);
+        if (roomSizeRange === '5+') return parseInt(room, 10) >= 5;
+        return false;
+      })();
+
+      return matchesPrice && matchesRoomSize;
+    });
+  }, [priceRange, roomSizeRange, apartments]);
 
   useEffect(() => {
     if (onFilterChange) {
       onFilterChange(filteredApartments);
     }
-  }, [priceRange, roomSizeRange, apartments]);
-
-  const filteredApartments = apartments.filter((apartment) => {
-    const priceMatch = (priceRange === 'all' || (
-      priceRange === 'under-500' && apartment.price < 500) ||
-      (priceRange === '500-1000' && apartment.price >= 500 && apartment.price < 1000) ||
-      (priceRange === '1000-2000' && apartment.price >= 1000 && apartment.price < 2000) ||
-      (priceRange === 'over-2000' && apartment.price >= 2000)
-    );
-
-    const roomSizeMatch = (roomSizeRange === 'all' || (
-      roomSizeRange === 'studio' && apartment.room === 'studio') ||
-      (roomSizeRange === '1-2' && (apartment.room === '1' || apartment.room === '2')) ||
-      (roomSizeRange === '3-4' && (apartment.room === '3' || apartment.room === '4')) ||
-      (roomSizeRange === '5+' && apartment.room >= 5)
-    );
-
-    return priceMatch && roomSizeMatch;
-  });
+  }, [filteredApartments, onFilterChange]);
 
   return (
     <div>
@@ -171,3 +263,4 @@ const FilterApartments = ({ apartments, onFilterChange }) => {
 };
 
 export default FilterApartments;
+
