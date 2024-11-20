@@ -24,6 +24,7 @@ import Policies from './routes/studentOwnerDashboard/about/policies';
 import About from './routes/studentOwnerDashboard/about/about';
 import HostelOwnerProfile from './routes/hostelOwnerDashoard/HostelOwnerProfile/App';
 import Auth from './routes/studentOwnerDashboard/studentAuth/Auth';
+import Filter from "./routes/studentOwnerDashboard/FilterApartments";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
   {
     path: "/about/about",
     element: <About />
+  },
+  {
+    path: "/FilterApartments",
+    element:<Filter/>
   },
   {
     path: "/studentAuth",
