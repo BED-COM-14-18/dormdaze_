@@ -1,7 +1,7 @@
-  import React, { useState, useEffect } from 'react';
-  import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-const LoginPage = () => {
+function LoginPage() {
   const [hasAccount, setHasAccount] = useState(true);
   const [userDetails, setUserDetails] = useState({
     fullName: '',
@@ -17,7 +17,6 @@ const LoginPage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState('');
 
-  // Retrieve registered users from localStorage or initialize an empty array
   const getRegisteredUsers = () => {
     const storedUsers = localStorage.getItem('registeredUsers');
     return storedUsers ? JSON.parse(storedUsers) : [];
@@ -25,7 +24,6 @@ const LoginPage = () => {
 
   const [registeredUsers, setRegisteredUsers] = useState(getRegisteredUsers());
 
-  // Persist registered users to localStorage whenever the registeredUsers state changes
   useEffect(() => {
     localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
   }, [registeredUsers]);
@@ -35,7 +33,8 @@ const LoginPage = () => {
     setUserDetails({ ...userDetails, [name]: value });
   };
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     const user = registeredUsers.find(
       user => user.username === userDetails.username && user.password === userDetails.password
     );
@@ -47,7 +46,8 @@ const LoginPage = () => {
     }
   };
 
-  const handleRegister = () => {
+  const handleRegister = (e) => {
+    e.preventDefault();
     const { fullName, age, username, password, nationality, district, area, gender } = userDetails;
 
     if (!fullName || !age || !username || !password || !nationality || !district || !area || !gender) {
@@ -62,137 +62,136 @@ const LoginPage = () => {
   };
 
   return (
-    <div className='flex flex-col justify-center overflow-y-scroll items-center h-screen w-full p-5 box-border'>
-      <div className='w-full p-5 border border-solid rounded-md shadow-md box-border'>
+    <div className="flex justify-center items-center h-screen bg-[#b6acac]">
+      <div className="bg-[#eff8f8] p-8 max-h-[600px] rounded-lg shadow-md w-[300px]">
+        <h1 className="text-center text-[#333]">Dormdaze</h1>
         {isLoggedIn ? (
           <div>
             <h1>Welcome, {userDetails.username}!</h1>
-            <Link
-  to='/hostelOwnerDashboard'
-  className='inline-block py-2 px-4 bg-blue-500 text-white font-semibold rounded shadow hover:bg-blue-600'
->
-  Click Here to see Hostel Listings
-</Link>
+            <Link to='/hostelOwnerDashboard' className='inline-block py-2 px-4 bg-blue-500 text-white font-semibold rounded shadow hover:bg-blue-600'>Click Here to see Hostel Listings</Link>
           </div>
         ) : hasAccount ? (
-          <div>
-            <h2>Sign in to start your session</h2>
-            {error && <div className='bg-red-500 mb-2 w-[30%]'>{error}</div>}
-            <div className='mb-2'>
-              <label className='p-1  block mb-1 border-solid box-border'>Username:</label>
-              <input
-                type="text"
-                name="username"
-                value={userDetails.username}
-                onChange={handleInputChange}
-                className='w-[400px] p-1 rounded-lg shadow-sm h-[6vh] border-solid border-[1px] box-border'
-              />
-            </div>
-            <div className='mb-2'>
-              <label className='p-1  block mb-1 '>Password:</label>
-              <input
-                type="password"
-                name="password"
-                value={userDetails.password}
-                onChange={handleInputChange}
-                className='w-[400px] p-1 rounded-lg shadow-sm h-[6vh] border-solid border-[1px] box-border '
-              />
-            </div>
-            <button className='py-3 rounded cursor-pointer block w-[30%] box-border bg-blue-700 mb-2' onClick={handleLogin}>Login</button>
-            <button className='item justify-center w-[30%] py-3 rounded cursor-pointer block box-border bg-green-700 mb-2' onClick={() => setHasAccount(false)}>Register</button>
-          </div>
+          <form onSubmit={handleLogin} className='flex flex-col'>
+            <h2 className="mb-4">Sign in to start your session</h2>
+            {error && <div className='bg-red-500 mb-2 p-2 rounded-md'>{error}</div>}
+            <label htmlFor='username' className="mb-1 font-bold">Username:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={userDetails.username}
+              onChange={handleInputChange}
+              className='mb-4 p-2 rounded-md border border-[#ccc]'
+              required
+            />
+            <label htmlFor='password' className="mb-1 font-bold">Password:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={userDetails.password}
+              onChange={handleInputChange}
+              className='mb-4 p-2 rounded-md border border-[#ccc]'
+              required
+            />
+            <button className='mb-4 p-2 rounded-md bg-[#576558] text-white hover:bg-[#0b160c]' type="submit">Login</button>
+            <button className='p-2 rounded-md bg-green-500 text-white hover:bg-green-600' type="button" onClick={() => setHasAccount(false)}>Register</button>
+          </form>
         ) : (
-          <div className='flex flex-col justify-center items-center h-screen w-full py-10 box-border'>
-            <h2>Register your account</h2>
-            {error && <div className='bg-red-900 mb-2'>{error}</div>}
-            <div className=' mb-2'>
-              <label className='p-1  block mb-1'>Full Name:</label>
-              <input
-                type="text"
-                name="fullName"
-                value={userDetails.fullName}
-                onChange={handleInputChange}
-                className='w-full p-1 rounded-lg shadow-sm h-[6vh] border-solid border-[1px] box-border '
-              />
-            </div>
-            <div className=' mb-2'>
-              <label className='p-1  block mb-1'>Age:</label>
-              <input
-                type="number"
-                name="age"
-                value={userDetails.age}
-                onChange={handleInputChange}
-                className='w-full p-1 rounded-lg shadow-sm h-[6vh] border-solid border-[1px] box-border '
-              />
-            </div>
-            <div className='mb-2 '>
-              <label className='p-1  block mb-1'>Username:</label>
-              <input
-                type="text"
-                name="username"
-                value={userDetails.username}
-                onChange={handleInputChange}
-                className='w-full p-1 rounded-lg shadow-sm h-[6vh] border-solid border-[1px] box-border '
-              />
-            </div>
-            <div className='mb-2'>
-              <label className='p-1  block mb-1'>Password:</label>
-              <input
-                type="password"
-                name="password"
-                value={userDetails.password}
-                onChange={handleInputChange}
-                className='w-full p-1 rounded-lg shadow-sm h-[6vh] border-solid border-[1px] box-border '
-              />
-            </div>
-            <div className='mb-2'>
-              <label className='p-1  block mb-1'>Nationality:</label>
-              <input
-                type="text"
-                name="nationality"
-                value={userDetails.nationality}
-                onChange={handleInputChange}
-                className='w-full p-1 rounded-lg shadow-sm h-[6vh] border-solid border-[1px] box-border '
-              />
-            </div>
-            <div className='mb-2'>
-              <label className='p-1  block mb-1'>District:</label>
-              <input
-                type="text"
-                name="district"
-                value={userDetails.district}
-                onChange={handleInputChange}
-                className='w-full p-1 rounded-lg shadow-sm h-[6vh] border-solid border-[1px] box-border '
-              />
-            </div>
-            <div className='mb-2'>
-              <label className=' mr-2 block mb-1'>Area:</label>
-              <input
-                type="text"
-                name="area"
-                value={userDetails.area}
-                onChange={handleInputChange}
-                className='w-full p-1 rounded-lg shadow-sm h-[6vh] border-solid border-[1px] box-border '
-              />
-            </div>
-            <div className='mb-2'>
-              <label className='mr-2 block mb-1'>Gender:</label>
-              <input
-                type="text"
-                name="gender"
-                value={userDetails.gender}
-                onChange={handleInputChange}
-                className='w-full p-1 rounded-lg shadow-sm h-[6vh] border-solid border-[1px] box-border '
-              />
-            </div>
-            <button className=' h-10 border-none bg-blue-700 rounded-lg cursor-pointer block w-full box-border' onClick={handleRegister}>Register</button>
-            <button className='h-10 mt-1 border-none bg-red-700 rounded-lg cursor-pointer block w-full box-border' onClick={() => setHasAccount(true)}>Back to Login</button>
-          </div>
+          <form onSubmit={handleRegister} className='flex flex-col'>
+            <h2 className="mb-4">Register your account</h2>
+            {error && <div className='bg-red-500 mb-2 p-2 rounded-md'>{error}</div>}
+            <label htmlFor='fullName' className="mb-1 font-bold">Full Name:</label>
+            <input
+              type="text"
+              id="fullName"
+              name="fullName"
+              value={userDetails.fullName}
+              onChange={handleInputChange}
+              className='mb-4 p-2 rounded-md border border-[#ccc]'
+              required
+            />
+            <label htmlFor='age' className="mb-1 font-bold">Age:</label>
+            <input
+              type="number"
+              id="age"
+              name="age"
+              value={userDetails.age}
+              onChange={handleInputChange}
+              className='mb-4 p-2 rounded-md border border-[#ccc]'
+              required
+            />
+            <label htmlFor='username' className="mb-1 font-bold">Username:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={userDetails.username}
+              onChange={handleInputChange}
+              className='mb-4 p-2 rounded-md border border-[#ccc]'
+              required
+            />
+            <label htmlFor='password' className="mb-1 font-bold">Password:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={userDetails.password}
+              onChange={handleInputChange}
+              className='mb-4 p-2 rounded-md border border-[#ccc]'
+              required
+            />
+            <label htmlFor='nationality' className="mb-1 font-bold">Nationality:</label>
+            <input
+              type="text"
+              id="nationality"
+              name="nationality"
+              value={userDetails.nationality}
+              onChange={handleInputChange}
+              className='mb-4 p-2 rounded-md border border-[#ccc]'
+              required
+            />
+            <label htmlFor='district' className="mb-1 font-bold">District:</label>
+            <input
+              type="text"
+              id="district"
+              name="district"
+              value={userDetails.district}
+              onChange={handleInputChange}
+              className='mb-4 p-2 rounded-md border border-[#ccc]'
+              required
+            />
+            <label htmlFor='area' className="mb-1 font-bold">Area:</label>
+            <input
+              type="text"
+              id="area"
+              name="area"
+              value={userDetails.area}
+              onChange={handleInputChange}
+              className='mb-4 p-2 rounded-md border border-[#ccc]'
+              required
+            />
+            <label htmlFor='gender' className="mb-1 font-bold">Gender:</label>
+            <input
+              type="text"
+              id="gender"
+              name="gender"
+              value={userDetails.gender}
+              onChange={handleInputChange}
+              className='mb-4 p-2 rounded-md border border-[#ccc]'
+              required
+            />
+            <button className='mb-4 p-2 rounded-md bg-[#576558] text-white hover:bg-[#0b160c]' type="submit">Register</button>
+            <button type="button" className='p-2 rounded-md bg-red-500 text-white hover:bg-red-600' onClick={() => setHasAccount(true)}>Back to Login</button>
+          </form>
         )}
+        <div className='login-link mt-4'>
+          <p className="text-center text-[#700808] text-lg">Already have an Account? 
+            <a href="#" className="text-[#212b22] hover:underline" onClick={() => setHasAccount(true)}>Log In</a></p>
+        </div>
       </div>
     </div>
   );
-};
-
+}
 
 export default LoginPage;
