@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TopBar from './TopBar'; // Adjust the import path as needed
 import Auth from '../studentAuth/Auth';
+import signIn from '../studentAuth/signIn'; // to be removed
 //import LoginPage from '../../hostelOwnerDashoard/hostelOwnerAuth/LoginPage';
 import ChoiceModal from './choiceModal.jsx';
 import SignIn from './Sign-in';
