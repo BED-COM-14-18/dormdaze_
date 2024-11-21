@@ -34,7 +34,7 @@ const Policies = () => {
       <section className="mb-8 shadow-sm border p-3 rounded-md mt-4 bg-slate-50">
         <h2 className="text-2xl font-semibold mb-2">Introduction</h2>
         <p>
-          Welcome to Dormdash, the premier platform for university students to find and book off-campus hostel accommodations. By using our website and services, you agree to comply with and be bound by the following terms and policies. Please read these terms carefully. If you do not agree to these terms, you should not use our services.
+          Welcome to Dormdaze, the premier platform for university students to find and book off-campus hostel accommodations. By using our website and services, you agree to comply with and be bound by the following terms and policies. Please read these terms carefully. If you do not agree to these terms, you should not use our services.
         </p>
       </section>
 
