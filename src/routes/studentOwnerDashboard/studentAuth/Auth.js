@@ -129,12 +129,12 @@ function SignUp() {
             type="submit"
             className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
-            Submit
+            SignUp
           </button>
         </form>
 
         <p className="mt-4 text-center text-gray-600">
-          Already have an account? <a href="#" className="text-blue-500 hover:underline">Log in here</a>
+          Already have an account? <a href="#" className="text-blue-500 hover:underline">Login</a>
         </p>
       </div>
     </div>
