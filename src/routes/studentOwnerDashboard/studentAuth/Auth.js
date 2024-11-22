@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const validateSignUp = (values) => {
+const validateSign = (values) => {
   const errors = {};
   if (!values.name) {
     errors.name = 'Name is required!';
@@ -15,20 +15,14 @@ const validateSignUp = (values) => {
   } else if (values.password.length < 6) {
     errors.password = 'Password must be at least 6 characters!';
   }
-  if (!values.confirmPassword) {
-    errors.confirmPassword = 'Confirm password is required!';
-  } else if (values.password !== values.confirmPassword) {
-    errors.confirmPassword = 'Passwords must match!';
-  }
   return errors;
 };
 
-function SignUp() {
+function Sign() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-    confirmPassword: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -43,20 +37,20 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validateSignUp(formData);
+    const validationErrors = validateSign(formData);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
     console.log('Form Data submitted: ', formData);
-    alert('Account created successfully!');
+    alert('Welcome back!');
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 className="text-2xl font-bold text-center mb-4">Welcome</h1>
-        <p className="text-center text-gray-600 mb-6">Sign Up</p>
+        <p className="text-center text-gray-600 mb-6"><i>Sign in to start your session</i></p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -93,7 +87,7 @@ function SignUp() {
 
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Create Password
+              Password
             </label>
             <input
               type="password"
@@ -107,38 +101,20 @@ function SignUp() {
             {errors.password && <p className="text-sm text-red-500">{errors.password}</p>}
           </div>
 
-          <div>
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              required
-            />
-            {errors.confirmPassword && (
-              <p className="text-sm text-red-500">{errors.confirmPassword}</p>
-            )}
-          </div>
-
           <button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
-            SignUp
+            Sign In
           </button>
         </form>
 
         <p className="mt-4 text-center text-gray-600">
-          Already have an account? <a href="#" className="text-blue-500 hover:underline">Login</a>
+          Don’t have an account? <a href="#" className="text-blue-500 hover:underline">Create Account</a>
         </p>
       </div>
     </div>
   );
 }
 
-export default SignUp;
+export default Sign;
