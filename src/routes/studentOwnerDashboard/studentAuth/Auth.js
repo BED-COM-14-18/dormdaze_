@@ -103,14 +103,14 @@ function Sign() {
 
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
             Sign In
           </button>
         </form>
 
         <p className="mt-4 text-center text-gray-600">
-          Don’t have an account? <a href="#" className="text-blue-500 hover:underline">Create Account</a>
+          Don’t have an account? <a href="#" className="text-gray-500 hover:underline">Create Account</a>
         </p>
       </div>
     </div>
