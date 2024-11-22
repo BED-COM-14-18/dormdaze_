@@ -110,7 +110,7 @@ function Sign() {
         </form>
 
         <p className="mt-4 text-center text-gray-600">
-          Don’t have an account? <a href="#" className="text-gray-500 hover:underline">Create Account</a>
+          Don’t have an account? <a href="#" className="text-blue-500 hover:underline">Create Account</a>
         </p>
       </div>
     </div>
