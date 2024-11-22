@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const validateSignIn = (values) => {
+const validateSignUp = (values) => {
   const errors = {};
   if (!values.email) {
     errors.email = 'Email is required!';
@@ -9,14 +9,22 @@ const validateSignIn = (values) => {
   }
   if (!values.password) {
     errors.password = 'Password is required!';
+  } else if (values.password.length < 6) {
+    errors.password = 'Password must be at least 6 characters!';
+  }
+  if (!values.confirmPassword) {
+    errors.confirmPassword = 'Confirm password is required!';
+  } else if (values.password !== values.confirmPassword) {
+    errors.confirmPassword = 'Passwords must match!';
   }
   return errors;
 };
 
-function SignIn() {
+function SignUp() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    confirmPassword: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -31,19 +39,19 @@ function SignIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validateSignIn(formData);
+    const validationErrors = validateSignUp(formData);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-    console.log('Sign In Data submitted: ', formData);
-    alert('Sign In successful!');
+    console.log('Sign Up Data submitted: ', formData);
+    alert('Sign Up successful!');
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">Sign In</h1>
+        <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">Sign Up</h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Email Field */}
@@ -63,10 +71,10 @@ function SignIn() {
             {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
           </div>
 
-          {/* Password Field */}
+          {/* Create Password Field */}
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password:
+              Create Password:
             </label>
             <input
               type="password"
@@ -80,21 +88,40 @@ function SignIn() {
             {errors.password && <p className="text-sm text-red-500 mt-1">{errors.password}</p>}
           </div>
 
+          {/* Confirm Password Field */}
+          <div>
+            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+              Confirm Password:
+            </label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+              required
+            />
+            {errors.confirmPassword && (
+              <p className="text-sm text-red-500 mt-1">{errors.confirmPassword}</p>
+            )}
+          </div>
+
           {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
           >
-            Sign In
+            Sign Up
           </button>
         </form>
 
-        {/* Sign Up Link */}
+        {/* Sign In Link */}
         <div className="text-center mt-6">
           <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
+            Already have an account?{' '}
             <a href="#" className="text-blue-500 hover:underline">
-              Sign up here
+              Sign in here
             </a>
           </p>
         </div>
@@ -103,4 +130,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default SignUp;
