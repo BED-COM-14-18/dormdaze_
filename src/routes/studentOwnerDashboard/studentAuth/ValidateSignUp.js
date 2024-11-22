@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 const validateSignUp = (values) => {
   const errors = {};
   if (!values.email) {
@@ -112,7 +112,7 @@ function SignUp() {
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
           >
-            Sign Up
+            <Link to={'/studentAuth'} >SignUp</Link>
           </button>
         </form>
 
@@ -120,8 +120,8 @@ function SignUp() {
         <div className="text-center mt-6">
           <p className="text-sm text-gray-600">
             Already have an account?{' '}
-            <a href="#" className="text-blue-500 hover:underline">
-              Sign in here
+            <a href="#" className="text-blue-500 hover:underline"><Link to={'/studentAuth'} >Sign in here</Link>
+              
             </a>
           </p>
         </div>
