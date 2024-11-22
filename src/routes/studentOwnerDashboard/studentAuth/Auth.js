@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 const validateSign = (values) => {
   const errors = {};
   if (!values.name) {
@@ -104,13 +104,13 @@ function Sign() {
           <button
             type="submit"
             className="w-full bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          >
-            Sign In
+          ><Link to={'/listingPreview'}>Sign In</Link>
+       
           </button>
         </form>
 
         <p className="mt-4 text-center text-gray-600">
-          Don’t have an account? <a href="#" className="text-blue-500 hover:underline">Create Account</a>
+          Don’t have an account? <a href="#" className="text-blue-500 hover:underline"><Link to={'/ValidateSignUp'} >Create Account</Link></a>
         </p>
       </div>
     </div>

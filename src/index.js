@@ -25,6 +25,7 @@ import About from './routes/studentOwnerDashboard/about/about';
 import HostelOwnerProfile from './routes/hostelOwnerDashoard/HostelOwnerProfile/App';
 import Auth from './routes/studentOwnerDashboard/studentAuth/Auth';
 import Filter from "./routes/studentOwnerDashboard/FilterApartments";
+import SignUp from "./routes/studentOwnerDashboard/studentAuth/ValidateSignUp";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/userProfile",
     element: <UserProfile />,
+  },
+  {
+    path:"/ValidateSignUp",
+    element: <SignUp/>
   },
   {
     path: "/HostelOwnerProfile",
