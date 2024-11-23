@@ -1,27 +1,41 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 const validateSignUp = (values) => {
   const errors = {};
+
+  // Name validation
+  if (!values.name) {
+    errors.name = 'Name is required!';
+  }
+
+  // Email validation
   if (!values.email) {
     errors.email = 'Email is required!';
   } else if (!/\S+@\S+\.\S+/.test(values.email)) {
     errors.email = 'Email is invalid!';
   }
+
+  // Password validation
   if (!values.password) {
     errors.password = 'Password is required!';
   } else if (values.password.length < 6) {
     errors.password = 'Password must be at least 6 characters!';
   }
+
+  // Confirm Password validation
   if (!values.confirmPassword) {
     errors.confirmPassword = 'Confirm password is required!';
   } else if (values.password !== values.confirmPassword) {
     errors.confirmPassword = 'Passwords must match!';
   }
+
   return errors;
 };
 
 function SignUp() {
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -54,6 +68,23 @@ function SignUp() {
         <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">Sign Up</h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Name Field */}
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              Name:
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+              required
+            />
+            {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
+          </div>
+
           {/* Email Field */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -112,7 +143,7 @@ function SignUp() {
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
           >
-            <Link to={'/studentAuth'} >SignUp</Link>
+            <Link to={'/studentAuth'}>Sign Up</Link>
           </button>
         </form>
 
@@ -120,8 +151,8 @@ function SignUp() {
         <div className="text-center mt-6">
           <p className="text-sm text-gray-600">
             Already have an account?{' '}
-            <a href="#" className="text-blue-500 hover:underline"><Link to={'/studentAuth'} >Sign in here</Link>
-              
+            <a href="#" className="text-blue-500 hover:underline">
+              <Link to={'/studentAuth'}>Sign in here</Link>
             </a>
           </p>
         </div>
