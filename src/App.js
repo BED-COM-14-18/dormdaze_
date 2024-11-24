@@ -1,6 +1,6 @@
 
 import Table from './routes/adminDashBoard/Table';
-import './App.css';
+//import './App.css';
 
 function App() {
   return (
