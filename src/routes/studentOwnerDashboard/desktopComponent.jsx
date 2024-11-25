@@ -19,7 +19,7 @@ function TopBar({onSearch, onFilter}) {
   };
 
   return (
-    <div className='bg-[#07a0c3] h-[9vh] w-full flex flex-row items-center justify-evenly text-white font-normal text-lg fixed top-0 shadow-lg gap-2'>
+    <div className=' h-[9vh] w-full flex flex-row items-center justify-evenly text-white font-normal text-lg fixed bg-slate-500 top-0 shadow-lg gap-2'>
       {/* Your existing top bar content */}
       <MenuBt></MenuBt>
           
@@ -34,7 +34,7 @@ function TopBar({onSearch, onFilter}) {
                 </div>
           </Link>
           
-          <SearchBar onSearch={onSearch} />
+          <SearchBar onSearch={onSearch} /> 
         
           <div className='flex flex-col  text-xs justify-around items-center bg-[#fffdf9] size-9 rounded-xl bg-center'>
           <Link to={'/FilterApartments'}><button 

@@ -52,7 +52,7 @@ export const SearchBar = ({ onSearch }) => {
 
       return matchesAddress && matchesPrice && matchesRoom && matchesAmenities;
     });
-
+ 
     onSearch(newFilteredApartments); // Send search results back to the parent component
   };
 
