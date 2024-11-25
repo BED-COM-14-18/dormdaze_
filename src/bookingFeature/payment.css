@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.background-image { 
+    @apply bg-cover bg-center min-h-screen; background-image: url('../src/background.jpg');
+}
+.bg-overlay { 
+    @apply bg-white bg-opacity-75 p-8 rounded-lg shadow-lg; 
+}
