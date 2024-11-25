@@ -1,11 +1,6 @@
 import React from 'react';
-import './index.css';
-import MobileHomePage from './routes/studentOwnerDashboard/mobileComponent';
-import DesktopHomePage from './routes/studentOwnerDashboard/desktopComponent';
-
-//import paymentFeature from './routes/studentOwnerDashboard/payment/paymentFeature';
-//import LoginPage from './routes/hostelOwnerDashoard/hostelOwnerAuth/LoginPage';
-
+import HostelOwnerProfileDesktopHomePage from './HostelOwnerProfileDesktop';
+import HostelOwnerProfileMobileHomePage from './HostelOwnerProfileMobile';
 const viewportContext = React.createContext({});
 
 const ViewportProvider = ({ children }) => {
@@ -36,21 +31,18 @@ const useViewport = () => {
 /*const MobileComponent = () => <p>"Hmmm... Why is your screen so small?"</p>;
 const DesktopComponent = () => <p>"Wow, your screen is big!"</p>;*/
 
-// eslint-disable-next-line no-unused-vars
-
-
 const MyComponent = () => {
   const { width } = useViewport();
   const breakpoint = 600;
 
-  return width < breakpoint ? <MobileHomePage /> : <DesktopHomePage />;
+  return width < breakpoint ? <HostelOwnerProfileMobileHomePage /> : <HostelOwnerProfileDesktopHomePage />;
 };
 
-
-export default function UserProfile() {
+export default function HostelOwnerProfile() {
   return (
-<ViewportProvider>
-  <MyComponent />
-</ViewportProvider>
+    <ViewportProvider>
+      <MyComponent />
+    </ViewportProvider>
   );
 }
+
