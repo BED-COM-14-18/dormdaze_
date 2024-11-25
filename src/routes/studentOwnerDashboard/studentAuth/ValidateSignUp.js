@@ -65,7 +65,7 @@ function SignUp() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">Sign Up</h1>
+        <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">Create Your Account</h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Name Field */}
@@ -143,7 +143,7 @@ function SignUp() {
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
           >
-            <Link to={'/studentAuth'}>Sign Up</Link>
+            <Link to={'/studentAuth'}>Create Account</Link>
           </button>
         </form>
 
