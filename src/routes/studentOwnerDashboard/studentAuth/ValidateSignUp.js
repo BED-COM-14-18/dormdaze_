@@ -30,6 +30,11 @@ const validateSignUp = (values) => {
     errors.confirmPassword = 'Passwords must match!';
   }
 
+  // Role validation
+  if (!values.role) {
+    errors.role = 'Please select a role!';
+  }
+
   return errors;
 };
 
@@ -39,6 +44,7 @@ function SignUp() {
     email: '',
     password: '',
     confirmPassword: '',
+    role: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -48,6 +54,13 @@ function SignUp() {
     setFormData({
       ...formData,
       [name]: value,
+    });
+  };
+
+  const handleRoleChange = (e) => {
+    setFormData({
+      ...formData,
+      role: e.target.value,
     });
   };
 
@@ -71,7 +84,7 @@ function SignUp() {
           {/* Name Field */}
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-              Name:
+              Full Name:
             </label>
             <input
               type="text"
@@ -138,12 +151,42 @@ function SignUp() {
             )}
           </div>
 
+          {/* Role Selection */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Register as:</label>
+            <div className="mt-2">
+              <label className="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="role"
+                  value="landowner"
+                  checked={formData.role === 'landowner'}
+                  onChange={handleRoleChange}
+                  className="form-radio"
+                />
+                <span className="ml-2">Land Owner</span>
+              </label>
+              <label className="inline-flex items-center ml-6">
+                <input
+                  type="radio"
+                  name="role"
+                  value="student"
+                  checked={formData.role === 'student'}
+                  onChange={handleRoleChange}
+                  className="form-radio"
+                />
+                <span className="ml-2">Student</span>
+              </label>
+            </div>
+            {errors.role && <p className="text-sm text-red-500 mt-1">{errors.role}</p>}
+          </div>
+
           {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
           >
-            <Link to={'/studentAuth'}>Create Account</Link>
+            Create Account
           </button>
         </form>
 
@@ -151,9 +194,9 @@ function SignUp() {
         <div className="text-center mt-6">
           <p className="text-sm text-gray-600">
             Already have an account?{' '}
-            <a href="#" className="text-blue-500 hover:underline">
-              <Link to={'/studentAuth'}>Sign in here</Link>
-            </a>
+            <Link to="/studentAuth" className="text-blue-500 hover:underline">
+              Sign in here
+            </Link>
           </p>
         </div>
       </div>
