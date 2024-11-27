@@ -49,7 +49,9 @@ function Sign() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+   
+
+    <div className="flex items-center justify-center min-h-screen bg-gray-600">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 className="text-2xl font-bold text-center mb-4">Welcome</h1>
         <p className="text-center text-gray-600 mb-6"><i>Sign in to start your session</i></p>
@@ -57,7 +59,7 @@ function Sign() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Name
+              Email
             </label>
             <input
               type="email"
