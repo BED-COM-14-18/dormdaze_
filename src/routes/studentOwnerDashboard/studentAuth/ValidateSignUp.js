@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { baseurl } from '../../url';
 
 const validateSignUp = (values) => {
   const errors = {};
@@ -64,25 +66,32 @@ function SignUp() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateSignUp(formData);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-    console.log('Sign Up Data submitted: ', formData);
-    alert('Sign Up successful!');
+
+    try {
+      // Determine the endpoint based on the role
+      const endpoint = formData.role === 'student' ? `${baseurl}/auth/signup` : `${baseurl}/landlord`;
+
+      // Make the POST request
+      const response = await axios.post(endpoint, formData);
+      console.log('Sign Up Data submitted: ', response.data);
+      alert('Sign Up successful!');
+    } catch (error) {
+      console.error('There was an error!', error);
+      alert('Sign Up failed!');
+    }
   };
 
   return (
-    <div>
-   
     <div className="flex items-center justify-center min-h-screen bg-gray-600">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-      
         <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">Create Your Account</h1>
-
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Name Field */}
           <div>
@@ -100,7 +109,6 @@ function SignUp() {
             />
             {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
           </div>
-
           {/* Email Field */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -117,7 +125,6 @@ function SignUp() {
             />
             {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
           </div>
-
           {/* Create Password Field */}
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
@@ -134,7 +141,6 @@ function SignUp() {
             />
             {errors.password && <p className="text-sm text-red-500 mt-1">{errors.password}</p>}
           </div>
-
           {/* Confirm Password Field */}
           <div>
             <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
@@ -153,7 +159,6 @@ function SignUp() {
               <p className="text-sm text-red-500 mt-1">{errors.confirmPassword}</p>
             )}
           </div>
-
           {/* Role Selection */}
           <div>
             <label className="block text-sm font-medium text-gray-700">Register as:</label>
@@ -183,7 +188,6 @@ function SignUp() {
             </div>
             {errors.role && <p className="text-sm text-red-500 mt-1">{errors.role}</p>}
           </div>
-
           {/* Submit Button */}
           <button
             type="submit"
@@ -192,7 +196,6 @@ function SignUp() {
             Create Account
           </button>
         </form>
-
         {/* Sign In Link */}
         <div className="text-center mt-6">
           <p className="text-sm text-gray-600">
@@ -204,7 +207,6 @@ function SignUp() {
         </div>
       </div>
     </div>
-  </div>  
   );
 }
 

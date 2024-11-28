@@ -1,5 +1,7 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { baseurl } from '../../url';
 
 function TopBar() {
   const navigate = useNavigate();
@@ -34,14 +36,21 @@ export function CreateListingDesktop() {
   // Function to handle form submission and add a new listing
   const handleAddListing = (event) => {
     event.preventDefault();
+
+    const reader = new FileReader();
+    let imageString = '';
+    reader.readAsDataURL(event.target.photoUpload.files[0]);
+    reader.onload = (e)=>{
+      imageString = reader.result;
+    }
     
     // Extract form data
-    const hostelName = event.target.hostelName.value;
+    const HostelName = event.target.hostelName.value;
     const address = event.target.address.value;
     const description = event.target.description.value;
-    const price = event.target.price.value;
-    const roomType = event.target.roomType.value;
-    const photo = event.target.photoUpload.files[0];
+    const rentalFee = event.target.price.value;
+    const roomType = [event.target.roomType.value];
+    const image = [imageString];
     const additionalServices = {
       breakfast: event.target.breakfast.checked,
       laundry: event.target.laundry.checked,
@@ -54,17 +63,29 @@ export function CreateListingDesktop() {
 
     // Create new listing object
     const newListing = {
-      hostelName,
+      HostelName,
       address,
       description,
-      price,
+      rentalFee,
       roomType,
-      photo,
+      image,
       additionalServices
     };
+    
+    //rememeber to use axios.postForm when uploading blob
 
-    // Update listings state with the new listing
-    setListings([...listings, newListing]);
+    //send data to backend
+    axios.post(`${baseurl}/listing`, newListing)
+    .then((res)=>{
+      // Update listings state with the new listing
+    setListings([...listings, res.data]);
+    console.log(res.data)
+    })
+    .catch((err)=>{
+      console.error('An error occured: ',err);
+    })
+
+    
 
     // Clear form fields
     event.target.reset();
@@ -172,10 +193,10 @@ export function CreateListingDesktop() {
           <h2 className="text-xl font-semibold mb-4">Existing Listings</h2>
           {listings.map((listing, index) => (
             <div key={index} className="mb-4">
-              <h3 className="text-lg font-semibold">{listing.hostelName}</h3>
+              <h3 className="text-lg font-semibold">{listing.HostelName}</h3>
               <p>{listing.roomType}</p>
               <p>{listing.description}</p>
-              <p>{listing.price}</p>
+              <p>{listing.rentalFee}</p>
               <p>Additional Services: {Object.keys(listing.additionalServices).filter(service => listing.additionalServices[service]).join(', ')}</p>
               {/* Additional details like address, price, room type, etc., can be displayed here */}
 
