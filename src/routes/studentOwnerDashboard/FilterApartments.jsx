@@ -352,6 +352,7 @@ const FilterDropdown = ({ hostels, onFilter }) => {
 
     // Apply filtering logic on hostels
     const filteredHostels = hostels.filter((hostel) => {
+      console.log('hostel: ', hostel);
       const matchesPrice =
         selectedRanges.length > 0
           ? selectedRanges.some((range) => {
@@ -365,15 +366,16 @@ const FilterDropdown = ({ hostels, onFilter }) => {
           ? selectedTypes.includes(hostel.roomType.toLowerCase())
           : true; // If no room type filter is selected, include all hostels
 
+          //console.log(filteredHostels);
       return matchesPrice && matchesRoomType;
     });
-
+    
     // Call onFilter callback to update filtered hostels in the parent component
     onFilter(filteredHostels);
   };
 
   return (
-    <div className='absolute right-4 top-16 lg:right-32 sm:right-4 text-black bg-white border-solid border-[#ccc] sm:w-[36vw] lg:w-[15vw] border-b p-2 shadow-xl rounded-md'>
+    <div className='absolute bg-red-500 right-4 top-16 lg:right-32 sm:right-4 text-black bg-white border-solid border-[#ccc] sm:w-[36vw] lg:w-[15vw] border-b p-2 shadow-xl rounded-md'>
       {/* Price Range Filter */}
       <div className='mb-2'>
         <label className='text-lg font-normal'>Price Range:</label>
