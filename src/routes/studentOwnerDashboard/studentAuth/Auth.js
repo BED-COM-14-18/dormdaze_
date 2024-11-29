@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { baseurl } from '../../url';
 
 const validateSign = (values) => {
   const errors = {};
@@ -28,7 +30,7 @@ function Sign() {
   });
 
   const [errors, setErrors] = useState({});
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -37,20 +39,27 @@ function Sign() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateSign(formData);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-    console.log('Form Data submitted: ', formData);
-    alert('Welcome back!');
+
+    try {
+      // Assuming you have an endpoint for user login
+      const response = await axios.post(`${baseurl}/auth/login`, formData);
+      console.log('Form Data submitted: ', response.data);
+      alert('Welcome back!');
+      navigate('/');
+    } catch (error) {
+      console.error('There was an error!', error);
+      alert('Login failed!');
+    }
   };
 
   return (
-   
-
     <div className="flex items-center justify-center min-h-screen bg-gray-600">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 className="text-2xl font-bold text-center mb-4">Welcome</h1>

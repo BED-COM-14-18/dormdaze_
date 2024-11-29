@@ -19,11 +19,14 @@ function TopBar({onSearch, onFilter}) {
   };
 
   return (
-    <div className=' h-[9vh] w-full flex flex-row items-center justify-evenly text-white font-normal text-lg fixed bg-slate-500 top-0 shadow-lg gap-2'>
+    <div className='bg-slate-500 h-[9vh] w-full flex flex-row items-center justify-evenly text-white font-normal text-lg fixed top-0 shadow-lg gap-2'>
       {/* Your existing top bar content */}
-      <MenuBt></MenuBt>      
-          <SearchBar onSearch={onSearch} style={{ width: '50%'}} /> 
-      
+      <MenuBt></MenuBt>
+          
+               
+          <SearchBar onSearch={onSearch} />    
+         
+          
           < Link to={'/studentAuth'}><div className="flex flex-col   text-xs items-center justify-center">
               <button type="button" className='h-6 w-6 bg-cover bg-no-repeat'>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16" className='size-6'>
