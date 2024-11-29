@@ -114,7 +114,7 @@ const About = () => {
       </section>
       
       <p className="mt-8 shadow-sm border p-3 rounded-md bg-slate-50">
-        For any questions or support, please <a href="mailto:bsc-com-30-21@unima.ac.mw, mailto:bsc-inf-16-20" className=' text-blue-500 hover:border-2 hover:bg-slate-300 p-2 hover:shadow-md rounded-lg'>email us</a>
+        For any questions or support, please <a href="mailto:dormdaze@gmail.com" className=' text-blue-500 hover:border-2 hover:bg-slate-300 p-2 hover:shadow-md rounded-lg'>email us</a>
       </p>
     </div>
     </div>

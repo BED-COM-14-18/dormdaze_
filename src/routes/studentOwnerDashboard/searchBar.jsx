@@ -52,14 +52,14 @@ export const SearchBar = ({ onSearch }) => {
 
       return matchesAddress && matchesPrice && matchesRoom && matchesAmenities;
     });
-
-    onSearch(newFilteredApartments); // Send search results back to the parent component
+ 
+    onSearch(newFilteredApartments); // Send results after searching
   };
 
   return (
     <div className='p-5 flex flex-col'>
       <div>
-        <form onSubmit={handleSubmit} className='items-center justify-center flex flex-row'>
+        <form onSubmit={handleSubmit} className='items-center justify-center w-200 flex flex-row'>
           <input
             type="text"
             name="address"
