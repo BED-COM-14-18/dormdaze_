@@ -89,7 +89,7 @@ function SignUp() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-600">
+    <div className="flex items-center justify-center min-h-screen bg-[#8fad8feb]">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">Create Your Account</h1>
         <form onSubmit={handleSubmit} className="space-y-6">

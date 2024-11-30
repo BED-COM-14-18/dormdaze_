@@ -46,7 +46,6 @@ export function CreateListingDesktop() {
     
     // Extract form data
     const HostelName = event.target.hostelName.value;
-    const address = event.target.address.value;
     const description = event.target.description.value;
     const rentalFee = event.target.price.value;
     const roomType = [event.target.roomType.value];
@@ -64,7 +63,6 @@ export function CreateListingDesktop() {
     // Create new listing object
     const newListing = {
       HostelName,
-      address,
       description,
       rentalFee,
       roomType,
