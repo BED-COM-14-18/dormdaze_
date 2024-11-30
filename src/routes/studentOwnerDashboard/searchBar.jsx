@@ -36,7 +36,7 @@ export const SearchBar = ({ onSearch }) => {
     // Have a check if all fields are empty
     if (!room && !maxPrice && !minPrice && !amenities && !address) {
       onSearch(null); //If no input has been provided, return empty results
-      return;
+       return;
     }
 
     const newFilteredApartments = apartments.filter((apartment) => {
@@ -51,7 +51,7 @@ export const SearchBar = ({ onSearch }) => {
         apartment.amenities.some(a => a.toLowerCase().includes(am.trim().toLowerCase()))
       );
 
-      return matchesAddress && matchesPrice && matchesRoom && matchesAmenities;
+      return matchesPrice && matchesAddress && matchesRoom && matchesAmenities;
     });
  
     onSearch(newFilteredApartments); // Send the results found after searching using input
