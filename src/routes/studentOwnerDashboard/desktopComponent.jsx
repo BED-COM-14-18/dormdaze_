@@ -7,7 +7,7 @@ import { Button } from 'primereact/button';
 //import { Dropdown } from 'primereact/dropdown';
 import React, { useState } from 'react';
 import SearchBar from "./searchBar";
-import FilterDropdown from './FilterApartments';
+//import FilterDropdown from './FilterApartments';
 import { useEffect } from "react";
 
 

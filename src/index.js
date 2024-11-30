@@ -57,10 +57,10 @@ const router = createBrowserRouter([
   path: "/hostelOwnerDashboard",
   element: <HostelOwnerDashboard />
   },
-  {
+   {
     path: "/adminDashboard",
     element: <AdminDashboard />
-  },
+  }, 
   {
     path: "/PaymentFeature",
     element: <PayFeature />

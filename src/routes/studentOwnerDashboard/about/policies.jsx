@@ -180,7 +180,7 @@ const Policies = () => {
       <section className="mb-8 shadow-sm border p-3 rounded-md mt-4 bg-slate-50">
         <h2 className="text-2xl font-semibold mb-2">Contact Information</h2>
         <p>
-          If you have any questions or concerns about these Terms and Policies, please contact us at <a href="mailto:bsc-com-30-21@unima.ac.mw, mailto:bsc-inf-16-20" className=' text-blue-500 hover:border-2 hover:bg-slate-300 p-2 hover:shadow-md rounded-lg'>email us</a>.
+          If you have any questions or concerns about these Terms and Policies, please contact us at <a href="mailto:dormdaze@gmail.com " className=' text-blue-500 hover:border-2 hover:bg-slate-300 p-2 hover:shadow-md rounded-lg'>email us</a>.
         </p>
       </section>
 
