@@ -18,7 +18,11 @@ function TopBar({onSearch, onFilter}) {
     return(
         <div className='bg-[#58e9af] h-[vh] sm:h-[7vh] md:h-[7vh] w-full flex flex-row items-center justify-evenly  text-lg fixed top-0 shadow-lg gap-2'>
             <MenuBt></MenuBt>
-
+            <div class="flex items-center justify-center h-screen bg-gray-100">
+              <div class="text-4xl font-bold text-blue-600">
+               Dormdaze
+              </div>
+            </div>
             <SearchBar onSearch={onSearch} />
 
             <div className='flex flex-col  text-xs justify-around items-center bg-[#fffdf9] w-8 h-8 rounded-xl bg-center'>
