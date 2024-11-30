@@ -3,20 +3,21 @@ import { apartments } from './templateListing';
 
 
 export const SearchBar = ({ onSearch }) => {
-    // Accept onSearch prop to send search results
+    // Accept onSearch prop so that search results are sent
   const [filter, setFilter] = useState({
-    address: '',
-    minPrice: '',
-    maxPrice: '',
     room: '',
+    maxPrice: '',
+    minPrice: '',
     amenities: '',
+    address: '',
   });
 
+
   useEffect(() => {
-    const { address, minPrice, maxPrice, room, amenities } = filter;
-    // If all filter fields are empty, trigger onSearch with null
-    if (!address && !minPrice && !maxPrice && !room && !amenities) {
-      onSearch(null);
+    const { room, maxPrice, minPrice, amenities, address } = filter;
+    //Trigger onSearch with null if all filter fields are empty
+    if (!room && !maxPrice && !minPrice && !amenities && !address) {
+       onSearch(null);
     }
   }, [filter, onSearch]);
 
@@ -30,11 +31,11 @@ export const SearchBar = ({ onSearch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { address, minPrice, maxPrice, room, amenities } = filter;
+    const { room, maxPrice, minPrice, amenities, address } = filter;
 
-    // Check if all filter fields are empty.
-    if (!address && !minPrice && !maxPrice && !room && !amenities) {
-      onSearch(null); // No input, return empty results.
+    // Have a check if all fields are empty
+    if (!room && !maxPrice && !minPrice && !amenities && !address) {
+      onSearch(null); //If no input has been provided, return empty results
       return;
     }
 
@@ -43,8 +44,8 @@ export const SearchBar = ({ onSearch }) => {
       const price = parseInt(apartment.price.replace('MK', ''), 10);
 
       const matchesAddress = apartment.address.toLowerCase().includes(address.toLowerCase());
-      const matchesPrice = (!minPrice || price >= parseInt(minPrice, 10)) &&
-                           (!maxPrice || price <= parseInt(maxPrice, 10));
+      const matchesPrice = (!maxPrice || price <= parseInt(maxPrice, 10)) &&
+                           (!minPrice || price >= parseInt(minPrice, 10));
       const matchesRoom = apartment.room.toLowerCase().includes(room.toLowerCase());
       const matchesAmenities = amenities.split(',').every(am =>
         apartment.amenities.some(a => a.toLowerCase().includes(am.trim().toLowerCase()))
@@ -53,7 +54,7 @@ export const SearchBar = ({ onSearch }) => {
       return matchesAddress && matchesPrice && matchesRoom && matchesAmenities;
     });
  
-    onSearch(newFilteredApartments); // Send results after searching
+    onSearch(newFilteredApartments); // Send the results found after searching using input
   };
 
   return (
