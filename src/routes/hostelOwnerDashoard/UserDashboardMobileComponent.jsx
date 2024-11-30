@@ -13,7 +13,7 @@ export function BottomBar() {
   };
 
     return(
-        <div className='bg-[#07a0c3] h-[8vh] w-full gap-5 pt-1 flex flex-row justify-evenly items-center text-white font-normal fixed bottom-0 font-[calc(10px + 2vmin)]'>
+        <div className='bg-[#58e9af] h-[8vh] w-full gap-5 pt-1 flex flex-row justify-evenly items-center text-white font-normal fixed bottom-0 font-[calc(10px + 2vmin)]'>
             <Link to={''} onClick={handleGoBack}>
                 <div className='flex flex-col items-center gap-0  font-sans  text-sm mt-[1px]'>
                     <button type="button" className='h-6 w-6 bg-cover bg-no-repeat'>
@@ -21,7 +21,7 @@ export function BottomBar() {
                             <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
                         </svg>
                     </button>
-                    <p>Explore</p>
+                    <p>Home</p>
                 </div>
             </Link>
 
@@ -75,7 +75,7 @@ export function BottomBar() {
   
     return (
         <div className='flex justify-center'>
-            <Sidebar visible={visible} onHide={() => setVisible(false)} className='flex flex-col bg-[#d5dce1eb] h-full shadow-md drop-shadow-md p-4 sm:w-1/4 lg:w-1/4 justify-center'>
+            <Sidebar visible={visible} onHide={() => setVisible(false)} className='flex flex-col bg-[#8fad8feb] h-full shadow-md drop-shadow-md p-4 sm:w-1/4 lg:w-1/4 justify-center'>
               <div className='flex flex-col h-full justify-start'>
               <h2 className='text-2xl'>DormDaze</h2>
                 <ul className='flex flex-col justify-center h-64 gap-4'>
