@@ -107,7 +107,7 @@ function Sign() {
         </form>
 
         <p className="mt-4 text-center text-gray-600">
-          Don’t have an account?{' '}
+          Do not have an account?{' '}
           <a href="#" className="text-blue-500 hover:underline">
             <Link to={'/ValidateSignUp'}>Create Account</Link>
           </a>
