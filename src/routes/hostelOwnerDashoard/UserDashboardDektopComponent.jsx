@@ -73,7 +73,7 @@ function BottomBar() {
   
     return (
         <div className='flex justify-center'>
-            <Sidebar visible={visible} onHide={() => setVisible(false)} className='flex flex-col bg-[#d5dce1eb] h-full shadow-md drop-shadow-md p-4 sm:w-1/4 lg:w-1/4 justify-center'>
+            <Sidebar visible={visible} onHide={() => setVisible(false)} className='flex flex-col bg-[#8fad8feb] h-full shadow-md drop-shadow-md p-4 sm:w-1/4 lg:w-1/4 justify-center'>
               <div className='flex flex-col h-full justify-start'>
               <h2 className='text-2xl'>DormDaze</h2>
                 <ul className='flex flex-col justify-center h-64 gap-4'>

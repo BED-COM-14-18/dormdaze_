@@ -16,7 +16,7 @@ function TopBar({onSearch, onFilter}) {
 
 
     return(
-        <div className='bg-[#07a0c3] h-[vh] sm:h-[7vh] md:h-[7vh] w-full flex flex-row items-center justify-evenly  text-lg fixed top-0 shadow-lg gap-2'>
+        <div className='bg-[#58e9af] h-[vh] sm:h-[7vh] md:h-[7vh] w-full flex flex-row items-center justify-evenly  text-lg fixed top-0 shadow-lg gap-2'>
             <MenuBt></MenuBt>
 
             <SearchBar onSearch={onSearch} />
@@ -38,7 +38,7 @@ function TopBar({onSearch, onFilter}) {
 
 export function BottomBar() {
     return(
-        <div className='bg-[#07a0c3] h-[4.3] w-full gap-10 flex flex-row justify-evenly text-white  font-normal fixed bottom-0 font-[calc(10px + 2vmin)]'>
+        <div className='bg-[#58e9af] h-[4.3] w-full gap-10 flex flex-row justify-evenly text-white  font-normal fixed bottom-0 font-[calc(10px + 2vmin)]'>
             <Link to={'/'}>
                 <div className='flex flex-col items-center gap-0  font-sans text-sm mt-[1px]'>
                     <button type="button" className='h-6 w-6 bg-cover bg-no-repeat'>
