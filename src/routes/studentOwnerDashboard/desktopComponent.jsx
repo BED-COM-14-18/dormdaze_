@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
 import Example, { apartments } from "./templateListing";
 import { Sidebar } from 'primereact/sidebar';
 import { Button } from 'primereact/button';
 //import 'flowbite';
 //import { Checkbox } from "primereact/checkbox";
 //import { Dropdown } from 'primereact/dropdown';
-import React, { useState } from 'react';
 import SearchBar from "./searchBar";
 //import FilterDropdown from './FilterApartments';
-import { useEffect } from "react";
 
 
 function TopBar({onSearch, onFilter}) {
@@ -22,8 +21,8 @@ function TopBar({onSearch, onFilter}) {
     <div className='bg-[#58e9af] h-[9vh] w-full flex flex-row items-center justify-evenly text-white font-normal text-lg fixed top-0 shadow-lg gap-2'>
       {/* Your existing top bar content */}
       <MenuBt></MenuBt>
-          
-      <Link to={'/'}>
+      <div class="flex items-center justify-center h-screen"> <div class="text-4xl font-bold text-[#272c2a]"> Dormdaze </div> </div>    
+      <Link to={''}>
                 <div className='flex flex-col items-center gap-0  font-sans text-sm mt-[1px]'>
                     <button type="button" className='h-6 w-6 bg-cover bg-no-repeat'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16" className='size-5'>

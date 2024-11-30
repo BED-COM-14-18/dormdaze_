@@ -5,30 +5,6 @@ import { Sidebar } from 'primereact/sidebar';
 import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router-dom';
 
-
-// function TopBar() {
-//   const navigate = useNavigate();
-//   const handleGoBack = () => {
-//     navigate(-1); // This navigates to the previous page
-//   };
-//   return(
-//       <div className=' bg-white h-12 w-full flex flex-row fixed justify-start gap-64 top-0 items-center p-0'>
-//             <div className='bg-[#e33d2800] mt-1'>
-//               <button 
-//                   type="button"
-//                   onClick={handleGoBack}
-//                   className='h-6 w-6 bg-cover bg-no-repeat ml-6'
-//               >
-//                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16" className=' size-8 fill-black'>
-//                       <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-//                   </svg>
-//               </button>
-//             </div>
-//       </div>
-//   );
-// }
-
-
 function MenuBt() {
   // Your existing MenuBt component
   
